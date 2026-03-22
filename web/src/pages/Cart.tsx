@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ArrowLeft, Trash2, MapPin, Truck, ShieldCheck, CreditCard, FileCheck } from 'lucide-react';
+import { useState } from 'react';
+import { Trash2, MapPin, Truck, ShieldCheck, CreditCard, FileCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 
