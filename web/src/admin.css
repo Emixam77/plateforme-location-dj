@@ -1,0 +1,400 @@
+/* admin.css - Dark Mode & Glassmorphism Theme for Admin Panel */
+
+:root {
+  --admin-bg: #0f0f13;
+  --admin-surface: rgba(255, 255, 255, 0.05);
+  --admin-surface-hover: rgba(255, 255, 255, 0.1);
+  --admin-border: rgba(255, 255, 255, 0.1);
+  --admin-text: #ffffff;
+  --admin-text-muted: #a1a1aa;
+  
+  /* Neon Accents */
+  --admin-accent: #8b5cf6; /* Violet Neon */
+  --admin-accent-glow: rgba(139, 92, 246, 0.5);
+  --admin-success: #10b981;
+  --admin-danger: #ef4444;
+  --admin-warning: #f59e0b;
+}
+
+body.admin-mode {
+  background-color: var(--admin-bg);
+  color: var(--admin-text);
+  margin: 0;
+  font-family: inherit;
+}
+
+/* Glassmorphism Basics */
+.glass-panel {
+  background: var(--admin-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--admin-border);
+  border-radius: 16px;
+}
+
+/* Layout */
+.admin-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--admin-bg);
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(139, 92, 246, 0.15), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.15), transparent 25%);
+}
+
+.admin-sidebar {
+  width: 260px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px;
+  border-right: 1px solid var(--admin-border);
+  background: rgba(15, 15, 19, 0.8);
+  backdrop-filter: blur(20px);
+  z-index: 10;
+}
+
+.admin-logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--admin-text);
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.admin-logo span {
+  color: var(--admin-accent);
+  text-shadow: 0 0 10px var(--admin-accent-glow);
+}
+
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.admin-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  color: var(--admin-text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.admin-nav-item:hover {
+  background: var(--admin-surface-hover);
+  color: var(--admin-text);
+}
+
+.admin-nav-item.active {
+  background: rgba(139, 92, 246, 0.15);
+  color: var(--admin-accent);
+  border-left: 3px solid var(--admin-accent);
+}
+
+.admin-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.admin-topbar {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  border-bottom: 1px solid var(--admin-border);
+  background: rgba(15, 15, 19, 0.6);
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 9;
+}
+
+.admin-topbar h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.admin-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--admin-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.admin-content-inner {
+  padding: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Dashboard KPIs */
+.admin-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.admin-kpi-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* A slight glow effect on hover */
+.admin-kpi-card:hover {
+  border-color: var(--admin-accent);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.1);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+.kpi-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--admin-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+
+.kpi-title {
+  font-size: 0.9rem;
+  color: var(--admin-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.kpi-value {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* Inventory Grid */
+.admin-page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.admin-btn {
+  background: var(--admin-accent);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px var(--admin-accent-glow);
+}
+
+.admin-btn:hover {
+  background: #7c3aed;
+  box-shadow: 0 6px 16px var(--admin-accent-glow);
+  transform: translateY(-1px);
+}
+
+.admin-btn-outline {
+  background: transparent;
+  border: 1px solid var(--admin-border);
+  color: var(--admin-text);
+  box-shadow: none;
+}
+
+.admin-btn-outline:hover {
+  background: var(--admin-surface-hover);
+  box-shadow: none;
+}
+
+.admin-inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.admin-product-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.admin-product-card:hover {
+  border-color: rgba(255,255,255, 0.3);
+  transform: translateY(-4px);
+}
+
+.admin-product-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 1px solid var(--admin-border);
+}
+
+.admin-product-info {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-product-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.admin-product-brand {
+  font-size: 0.8rem;
+  color: var(--admin-accent);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.admin-product-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 4px 0 0 0;
+}
+
+.admin-product-price {
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.badge-success { background: rgba(16, 185, 129, 0.1); color: var(--admin-success); border: 1px solid rgba(16, 185, 129, 0.2); }
+.badge-danger { background: rgba(239, 68, 68, 0.1); color: var(--admin-danger); border: 1px solid rgba(239, 68, 68, 0.2); }
+.badge-warning { background: rgba(245, 158, 11, 0.1); color: var(--admin-warning); border: 1px solid rgba(245, 158, 11, 0.2); }
+
+/* Drawer */
+.admin-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  z-index: 40;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.admin-drawer-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.admin-drawer {
+  position: fixed;
+  top: 0;
+  right: -450px;
+  width: 450px;
+  height: 100vh;
+  background: var(--admin-bg);
+  border-left: 1px solid var(--admin-border);
+  z-index: 50;
+  box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-drawer.open {
+  right: 0;
+}
+
+.drawer-header {
+  padding: 24px;
+  border-bottom: 1px solid var(--admin-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.drawer-body {
+  padding: 24px;
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  color: var(--admin-text-muted);
+}
+
+.admin-input {
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  color: var(--admin-text);
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.admin-input:focus {
+  outline: none;
+  border-color: var(--admin-accent);
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+}
+
+.drawer-footer {
+  padding: 24px;
+  border-top: 1px solid var(--admin-border);
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
