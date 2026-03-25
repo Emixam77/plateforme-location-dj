@@ -2,10 +2,9 @@ import { BrowserRouter as Router, Routes, Route, Link, Outlet } from 'react-rout
 import { ShoppingCart, User } from 'lucide-react';
 import { Catalog } from './pages/Catalog';
 import { ProductDetail } from './pages/ProductDetail';
-import { Cart } from './pages/Cart';
+import { ProductDetail } from './pages/ProductDetail';
 import { Packs } from './pages/Packs';
 import { Services } from './pages/Services';
-import { CartProvider, useCart } from './context/CartContext';
 import { AdminLayout } from './components/admin/AdminLayout';
 import { AdminDashboard } from './pages/admin/AdminDashboard';
 import { AdminProducts } from './pages/admin/AdminProducts';
@@ -77,8 +76,7 @@ function Layout() {
 function App() {
   return (
     <Router>
-      <CartProvider>
-        <Routes>
+      <Routes>
           {/* Admin Routes */}
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminDashboard />} />
@@ -91,12 +89,10 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/catalog" element={<Catalog />} />
             <Route path="/product/:id" element={<ProductDetail />} />
-            <Route path="/cart" element={<Cart />} />
             <Route path="/packs" element={<Packs />} />
             <Route path="/services" element={<Services />} />
           </Route>
-        </Routes>
-      </CartProvider>
+      </Routes>
     </Router>
   );
 }
