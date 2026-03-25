@@ -112,6 +112,12 @@
   }
 }
 
+@media (max-width: 768px) {
+  .pill-bar-container {
+    display: none !important;
+  }
+}
+
 /* Fin Pill Bar */
 
 @media (max-width: 768px) {
