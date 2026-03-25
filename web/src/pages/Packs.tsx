@@ -14,7 +14,7 @@ const MOCK_PACKS = [
       '1x Contrôleur DJ de base',
       'Câblage fourni'
     ],
-    buttonText: 'Réserver'
+    buttonText: 'Demander un devis'
   },
   {
     id: 'pack-2',
@@ -30,7 +30,7 @@ const MOCK_PACKS = [
       'Machine à fumée lourde',
       'Installation possible'
     ],
-    buttonText: 'Réserver'
+    buttonText: 'Demander un devis'
   },
   {
     id: 'pack-3',
@@ -46,7 +46,7 @@ const MOCK_PACKS = [
       'Retours DJ dédiés',
       'Assistance technique'
     ],
-    buttonText: 'Nous contacter'
+    buttonText: 'Demander un devis'
   }
 ];
 

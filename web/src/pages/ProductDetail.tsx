@@ -1,22 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
-import { ShoppingCart, ArrowLeft, CheckCircle2, Zap, Weight, Settings2 } from 'lucide-react';
-import { DayPicker } from 'react-day-picker';
-import { differenceInDays, startOfDay } from 'date-fns';
-import { useCart } from '../context/CartContext';
-import 'react-day-picker/dist/style.css';
+import { ArrowLeft, CheckCircle2, Zap, Weight } from 'lucide-react';
 
 export function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   
-  const [dateRange, setDateRange] = useState<{ from: Date | undefined; to?: Date }>({ from: undefined });
-  const [quantity, setQuantity] = useState(1);
-  const { addToCart } = useCart();
-  const [showSuccess, setShowSuccess] = useState(false);
-
   useEffect(() => {
     async function loadProduct() {
       if (!id) return;
@@ -26,38 +17,6 @@ export function ProductDetail() {
     }
     loadProduct();
   }, [id]);
-
-  const calculateTotal = () => {
-    if (!product) return 0;
-    let days = 1;
-    if (dateRange.from && dateRange.to) {
-      days = Math.max(1, differenceInDays(startOfDay(dateRange.to), startOfDay(dateRange.from)) + 1);
-    }
-    let totalPrice = product.daily_price;
-    for (let i = 2; i <= days; i++) {
-      totalPrice += (product.daily_price * 0.5);
-    }
-    return totalPrice * quantity;
-  };
-
-  const handleReserve = () => {
-    if (!product) return;
-    
-    addToCart({
-      id: crypto.randomUUID(),
-      productId: product.id,
-      name: product.name,
-      brand: product.brand,
-      image: product.image_url,
-      price: calculateTotal(),
-      quantity,
-      dateRange,
-      priceOptions: `${calculateTotal()}€ pour ${quantity > 1 ? quantity + ' pièces' : 'la sélection'}`
-    });
-    
-    setShowSuccess(true);
-    setTimeout(() => setShowSuccess(false), 3000);
-  };
 
   if (loading) return <div style={{ padding: '4rem', textAlign: 'center' }}>Chargement...</div>;
   if (!product) return <div style={{ padding: '4rem', textAlign: 'center' }}>Produit introuvable.</div>;
@@ -86,7 +45,7 @@ export function ProductDetail() {
           <img src={product.image_url} alt={product.name} style={{ width: '100%', maxHeight: '250px', objectFit: 'contain', filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.1))' }} />
         </div>
 
-        {/* Colonne 2 : Specs et Description (Badges) */}
+        {/* Colonne 2 : Specs et Description */}
         <div>
           <h3 style={{ marginBottom: '1rem', fontSize: '1.1rem' }}>À propos</h3>
           <p style={{ lineHeight: '1.7', color: 'var(--text-main)', marginBottom: '2rem' }}>{product.description}</p>
@@ -99,55 +58,36 @@ export function ProductDetail() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 1rem', background: 'var(--bg-secondary)', borderRadius: '99px', fontSize: '0.85rem', fontWeight: 500 }}>
               <Weight size={16} /> {product.weight_kg ? `${product.weight_kg} kg` : 'N/C'}
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.5rem 1rem', background: 'var(--bg-secondary)', borderRadius: '99px', fontSize: '0.85rem', fontWeight: 500 }}>
-              <Settings2 size={16} /> {product.connections ? product.connections.join(' / ') : 'Standard'}
-            </div>
           </div>
         </div>
 
-        {/* Colonne 3 : Simulateur Ultra-Compact */}
-        <div style={{ border: '1px solid #EAEAEA', borderRadius: '12px', padding: '1.5rem', background: '#FFF' }}>
+        {/* Colonne 3 : CTA Devis */}
+        <div style={{ border: '1px solid #EAEAEA', borderRadius: '12px', padding: '1.5rem', background: '#FFF', position: 'sticky', top: '100px' }}>
           <div style={{ marginBottom: '1.5rem' }}>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600, fontSize: '0.9rem' }}>Vos Dates</label>
-            <div style={{ border: '1px solid #EAEAEA', borderRadius: '8px', padding: '0.5rem', background: 'var(--bg-secondary)', display: 'flex', justifyContent: 'center' }}>
-               <DayPicker
-                mode="range"
-                selected={dateRange as any}
-                onSelect={setDateRange as any}
-                styles={{
-                  day: { borderRadius: '50%', margin: '0.1rem', width: '28px', height: '28px', fontSize: '0.8rem' },
-                  day_selected: { backgroundColor: 'var(--accent)', color: '#000', fontWeight: 'bold' }
-                }}
-              />
+            <div style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '0.5rem' }}>
+              {product.daily_price}€ <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)', fontWeight: 'normal' }}>/ jour (estim.)</span>
             </div>
+            <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.4' }}>
+              Le tarif final peut varier selon la durée et les options de livraison.
+            </p>
           </div>
 
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-            <span style={{ fontWeight: 600, fontSize: '0.9rem' }}>Quantité</span>
-            <div style={{ display: 'flex', alignItems: 'center', border: '1px solid #EAEAEA', borderRadius: '4px', background: 'var(--bg-secondary)' }}>
-              <button onClick={() => setQuantity(Math.max(1, quantity - 1))} style={{ padding: '0.3rem 0.8rem' }}>-</button>
-              <div style={{ padding: '0 0.8rem', fontWeight: 'bold', fontSize: '0.9rem' }}>{quantity}</div>
-              <button onClick={() => setQuantity(quantity + 1)} style={{ padding: '0.3rem 0.8rem' }}>+</button>
-            </div>
-          </div>
-
-          <div style={{ background: 'var(--bg-secondary)', padding: '1rem', borderRadius: '8px', marginBottom: '1.5rem' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.2rem' }}>
-              <span style={{ fontSize: '0.9rem' }}>Total estimé</span>
-              <span style={{ fontWeight: 'bold', fontSize: '1.4rem' }}>{calculateTotal()} €</span>
-            </div>
-            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '0.3rem', marginTop: '0.5rem' }}>
-              <CheckCircle2 size={12} color="var(--accent)" /> -50% appliqué sur les jours supp.
-            </div>
-          </div>
-
-          <button 
+          <a 
+            href={`mailto:contact@angelo-entertainment.com?subject=Demande de devis : ${product.name}`}
             className="btn-primary" 
-            onClick={handleReserve}
-            style={{ width: '100%', justifyContent: 'center', padding: '0.8rem', fontSize: '1rem', borderRadius: '8px', background: showSuccess ? '#10B981' : 'var(--accent)', color: showSuccess ? '#FFF' : '#000', transition: 'all 0.3s' }}
+            style={{ width: '100%', justifyContent: 'center', padding: '1rem', fontSize: '1rem', borderRadius: '8px', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
           >
-            {showSuccess ? 'Ajouté au panier ✅' : <><ShoppingCart size={18} /> Réserver</>}
-          </button>
+             Demander un devis
+          </a>
+
+          <div style={{ marginTop: '1.5rem', paddingTop: '1.5rem', borderTop: '1px solid #EAEAEA' }}>
+            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '0.8rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <CheckCircle2 size={14} color="var(--accent)" /> Matériel vérifié avant chaque loc.
+            </div>
+            <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <CheckCircle2 size={14} color="var(--accent)" /> Assistance technique disponible
+            </div>
+          </div>
         </div>
 
       </div>

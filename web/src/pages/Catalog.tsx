@@ -1,7 +1,6 @@
 import { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
-import { PillSearchBar } from '../components/PillSearchBar';
 import { SlidersHorizontal } from 'lucide-react';
 
 export function Catalog() {
@@ -57,9 +56,8 @@ export function Catalog() {
   return (
     <div className="main-content" style={{ paddingTop: '2rem' }}>
       
-      <div style={{ marginBottom: '4rem', textAlign: 'center' }}>
-        <h1 style={{ fontSize: '2.1rem', marginBottom: '3rem' }}>Notre Catalogue</h1>
-        <PillSearchBar />
+      <div style={{ marginBottom: '3rem', textAlign: 'center' }}>
+        <h1 style={{ fontSize: '2.1rem' }}>Notre Catalogue</h1>
       </div>
 
       <div style={{ display: 'flex', gap: '3rem', alignItems: 'flex-start' }}>
@@ -136,17 +134,22 @@ export function Catalog() {
                   <div className="product-image-wrap">
                     <img src={product.image_url} alt={product.name} />
                   </div>
-                  <div className="product-info">
-                    <span className="product-brand">{product.brand || 'Marque Pro'}</span>
-                    <h3 className="product-title">{product.name}</h3>
-                    
-                    <div className="product-specs">
-                      {product.power_rms && <span>{product.power_rms}W RMS</span>}
-                      {product.weight_kg && <span>{product.weight_kg}kg</span>}
+                  <div className="product-info" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                    <div>
+                      <span className="product-brand">{product.brand || 'Marque Pro'}</span>
+                      <h3 className="product-title">{product.name}</h3>
+                      <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '0.5rem', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+                        {product.description}
+                      </p>
                     </div>
                     
-                    <div className="product-price">
-                      <span>{product.daily_price}€ <span style={{fontSize: '0.85rem', fontWeight: 500, color: 'var(--text-muted)'}}>/ jour</span></span>
+                    <div style={{ marginTop: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <div className="product-price" style={{ margin: 0 }}>
+                        <span style={{ fontSize: '1.1rem' }}>{product.daily_price}€ <span style={{fontSize: '0.8rem', fontWeight: 500, color: 'var(--text-muted)'}}>/ jour</span></span>
+                      </div>
+                      <span className="btn-primary" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem', borderRadius: '4px' }}>
+                        Demander un devis
+                      </span>
                     </div>
                   </div>
                 </Link>

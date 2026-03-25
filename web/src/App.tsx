@@ -47,13 +47,13 @@ function Home() {
 }
 
 function Layout() {
-  const { totalItems } = useCart();
   
   return (
     <div className="app-container">
       <header className="header" style={{ borderBottom: '3px solid var(--accent)' }}>
-        <Link to="/" className="logo">
-          AUDIO<span style={{ color: 'var(--accent)' }}>RENT</span>
+        <Link to="/" className="logo" style={{ display: 'flex', flexDirection: 'column', lineHeight: '1.1', textDecoration: 'none' }}>
+          <div style={{ fontWeight: 'bold' }}>AUDIO<span style={{ color: 'var(--accent)' }}>RENT</span></div>
+          <span style={{ fontSize: '0.55rem', fontWeight: 'bold', letterSpacing: '1.5px', opacity: 0.9, color: 'var(--text-main)', marginTop: '2px' }}>ANGELO ENTERTAINMENT</span>
         </Link>
         
         <nav className="nav-links">
@@ -63,15 +63,7 @@ function Layout() {
         </nav>
         
         <div className="nav-links">
-          <Link to="/login"><User size={20} /></Link>
-          <Link to="/cart" style={{ position: 'relative' }}>
-            <ShoppingCart size={20} />
-            {totalItems > 0 && (
-              <span style={{ position: 'absolute', top: '-8px', right: '-12px', background: 'var(--accent)', color: '#000', fontSize: '0.7rem', padding: '2px 6px', borderRadius: '10px', fontWeight: 'bold' }}>
-                {totalItems}
-              </span>
-            )}
-          </Link>
+          <Link title="Administration" to="/admin"><User size={20} /></Link>
         </div>
       </header>
 
