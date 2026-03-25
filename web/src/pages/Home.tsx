@@ -12,10 +12,10 @@ export function Home() {
         left: 0,
         width: '100%',
         height: '100%',
-        backgroundImage: "url('/studio-bg.jpg')",
+        backgroundImage: "url('/angelo-bg.png')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        opacity: 0.2,
+        opacity: 0.4,
         zIndex: 0
       }} />
 
