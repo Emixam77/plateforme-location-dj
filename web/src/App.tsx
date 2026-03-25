@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route, Link, Outlet } from 'react-rout
 import { ShoppingCart, User } from 'lucide-react';
 import { Catalog } from './pages/Catalog';
 import { ProductDetail } from './pages/ProductDetail';
-import { ProductDetail } from './pages/ProductDetail';
 import { Packs } from './pages/Packs';
 import { Services } from './pages/Services';
 import { AdminLayout } from './components/admin/AdminLayout';
