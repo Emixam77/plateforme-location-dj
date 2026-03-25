@@ -1,0 +1,34 @@
+import { Link } from 'react-router-dom';
+import { ShoppingCart } from 'lucide-react';
+
+export function Home() {
+  return (
+    <div className="main-content" style={{ position: 'relative', overflow: 'hidden' }}>
+      
+      {/* Background Image Layer */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        backgroundImage: "url('/studio-bg.jpg')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        opacity: 0.2,
+        zIndex: 0
+      }} />
+
+      {/* Content Layer */}
+      <section className="hero" style={{ position: 'relative', zIndex: 1 }}>
+        <h1>Équipement Pro. <br/>Sans compromis.</h1>
+        <p>Location de matériel audiovisuel haute fidélité pour vos événements professionnels et privés.</p>
+        <span className="signature-text">Testé et approuvé par nos techniciens</span>
+        
+        <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+          <Link to="/catalog" className="btn-primary">Voir le Catalogue <ShoppingCart size={18}/></Link>
+        </div>
+      </section>
+    </div>
+  );
+}

@@ -2,14 +2,15 @@ import { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { SlidersHorizontal } from 'lucide-react';
+import { useQuoteModal } from '../context/QuoteContext';
 
 export function Catalog() {
   const [products, setProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const { openQuoteModal } = useQuoteModal();
 
   // States pour les filtres
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [maxPrice, setMaxPrice] = useState<number>(500);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -33,7 +34,6 @@ export function Catalog() {
   // Logique du filtre effectif
   const filteredProducts = useMemo(() => {
     return products.filter((p) => {
-      const priceCondition = p.daily_price <= maxPrice;
       const catSlug = p.categories?.slug;
       
       let categoryCondition = true;
@@ -41,9 +41,9 @@ export function Catalog() {
         categoryCondition = catSlug ? selectedCategories.includes(catSlug) : false;
       }
 
-      return priceCondition && categoryCondition;
+      return categoryCondition;
     });
-  }, [products, selectedCategories, maxPrice]);
+  }, [products, selectedCategories]);
 
   const handleCategoryToggle = (slug: string) => {
     setSelectedCategories(prev => 
@@ -98,20 +98,6 @@ export function Catalog() {
               Lumières & FX
             </label>
           </div>
-
-          <div className="filter-group">
-            <h4 style={{ marginBottom: '0.5rem', fontSize: '0.9rem', color: 'var(--text-muted)' }}>PRIX MAXIMUM / JOUR</h4>
-            <div style={{ fontWeight: 600, marginBottom: '0.5rem' }}>{maxPrice} €</div>
-            <input 
-              type="range" 
-              min="0" 
-              max="500" 
-              step="10"
-              value={maxPrice}
-              onChange={(e) => setMaxPrice(Number(e.target.value))}
-              style={{ width: '100%', accentColor: 'var(--accent)' }} 
-            />
-          </div>
         </aside>
 
         {/* Grille Catalogue */}
@@ -147,9 +133,16 @@ export function Catalog() {
                       <div className="product-price" style={{ margin: 0 }}>
                         <span style={{ fontSize: '1.1rem' }}>{product.daily_price}€ <span style={{fontSize: '0.8rem', fontWeight: 500, color: 'var(--text-muted)'}}>/ jour</span></span>
                       </div>
-                      <span className="btn-primary" style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem', borderRadius: '4px' }}>
+                      <button 
+                        onClick={(e) => {
+                          e.preventDefault(); // Prevent Link navigation
+                          openQuoteModal(product.name);
+                        }}
+                        className="btn-primary" 
+                        style={{ fontSize: '0.85rem', padding: '0.6rem 1rem' }}
+                      >
                         Demander un devis
-                      </span>
+                      </button>
                     </div>
                   </div>
                 </Link>

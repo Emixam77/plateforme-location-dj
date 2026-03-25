@@ -1,51 +1,19 @@
 import { BrowserRouter as Router, Routes, Route, Link, Outlet } from 'react-router-dom';
-import { ShoppingCart, User } from 'lucide-react';
+import { User } from 'lucide-react';
+import { Home } from './pages/Home';
 import { Catalog } from './pages/Catalog';
-import { ProductDetail } from './pages/ProductDetail';
 import { Packs } from './pages/Packs';
 import { Services } from './pages/Services';
+import { ProductDetail } from './pages/ProductDetail';
 import { AdminLayout } from './components/admin/AdminLayout';
 import { AdminDashboard } from './pages/admin/AdminDashboard';
 import { AdminProducts } from './pages/admin/AdminProducts';
 import { AdminSettings } from './pages/admin/AdminSettings';
+import { QuoteProvider } from './context/QuoteContext';
+import { QuoteModal } from './components/QuoteModal';
 import './index.css';
 
-
-function Home() {
-  // Rendu simplifié d'accueil avec Background Image a 40%
-  return (
-    <div className="main-content" style={{ position: 'relative', overflow: 'hidden' }}>
-      
-      {/* Background Image Layer */}
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        backgroundImage: "url('/studio-bg.jpg')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        opacity: 0.2,
-        zIndex: 0
-      }} />
-
-      {/* Content Layer */}
-      <section className="hero" style={{ position: 'relative', zIndex: 1 }}>
-        <h1>Équipement Pro. <br/>Sans compromis.</h1>
-        <p>Location de matériel audiovisuel haute fidélité pour vos événements professionnels et privés.</p>
-        <span className="signature-text">Testé et approuvé par nos techniciens</span>
-        
-        <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-          <Link to="/catalog" className="btn-primary">Voir le Catalogue <ShoppingCart size={18}/></Link>
-        </div>
-      </section>
-    </div>
-  );
-}
-
 function Layout() {
-  
   return (
     <div className="app-container">
       <header className="header" style={{ borderBottom: '3px solid var(--accent)' }}>
@@ -74,25 +42,28 @@ function Layout() {
 
 function App() {
   return (
-    <Router>
-      <Routes>
-          {/* Admin Routes */}
-          <Route path="/admin" element={<AdminLayout />}>
-            <Route index element={<AdminDashboard />} />
-            <Route path="products" element={<AdminProducts />} />
-            <Route path="settings" element={<AdminSettings />} />
-          </Route>
+    <QuoteProvider>
+      <Router>
+        <Routes>
+            {/* Admin Routes */}
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<AdminDashboard />} />
+              <Route path="products" element={<AdminProducts />} />
+              <Route path="settings" element={<AdminSettings />} />
+            </Route>
 
-          {/* Public Routes */}
-          <Route element={<Layout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/catalog" element={<Catalog />} />
-            <Route path="/product/:id" element={<ProductDetail />} />
-            <Route path="/packs" element={<Packs />} />
-            <Route path="/services" element={<Services />} />
-          </Route>
-      </Routes>
-    </Router>
+            {/* Public Routes */}
+            <Route element={<Layout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/catalog" element={<Catalog />} />
+              <Route path="/product/:id" element={<ProductDetail />} />
+              <Route path="/packs" element={<Packs />} />
+              <Route path="/services" element={<Services />} />
+            </Route>
+        </Routes>
+        <QuoteModal />
+      </Router>
+    </QuoteProvider>
   );
 }
 

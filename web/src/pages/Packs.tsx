@@ -1,6 +1,8 @@
 import { Check } from 'lucide-react';
+import { useQuoteModal } from '../context/QuoteContext';
 
 const MOCK_PACKS = [
+  // ... (keeping the same packs)
   {
     id: 'pack-1',
     badge: 'Soirée Privée',
@@ -51,6 +53,8 @@ const MOCK_PACKS = [
 ];
 
 export function Packs() {
+  const { openQuoteModal } = useQuoteModal();
+  
   return (
     <div style={{ backgroundColor: '#e9ecef', minHeight: '100vh', padding: '80px 20px', fontFamily: '"Inter", sans-serif' }}>
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
@@ -123,21 +127,23 @@ export function Packs() {
                 </p>
 
                 {/* Main Button */}
-                <button style={{
-                  backgroundColor: '#111',
-                  color: '#fff',
-                  border: 'none',
-                  borderRadius: '12px',
-                  padding: '14px 24px',
-                  fontSize: '0.95rem',
-                  fontWeight: 600,
-                  cursor: 'pointer',
-                  width: '100%',
-                  transition: 'background-color 0.2s ease',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#333'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#111'}
+                <button 
+                  onClick={() => openQuoteModal(`Pack ${pack.name}`)}
+                  style={{
+                    backgroundColor: '#111',
+                    color: '#fff',
+                    border: 'none',
+                    borderRadius: '12px',
+                    padding: '14px 24px',
+                    fontSize: '0.95rem',
+                    fontWeight: 600,
+                    cursor: 'pointer',
+                    width: '100%',
+                    transition: 'background-color 0.2s ease',
+                    boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+                  }}
+                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#333'}
+                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#111'}
                 >
                   {pack.buttonText}
                 </button>

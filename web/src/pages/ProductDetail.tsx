@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 import { ArrowLeft, CheckCircle2, Zap, Weight } from 'lucide-react';
+import { useQuoteModal } from '../context/QuoteContext';
 
 export function ProductDetail() {
   const { id } = useParams();
   const [product, setProduct] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const { openQuoteModal } = useQuoteModal();
   
   useEffect(() => {
     async function loadProduct() {
@@ -72,13 +74,13 @@ export function ProductDetail() {
             </p>
           </div>
 
-          <a 
-            href={`mailto:contact@angelo-entertainment.com?subject=Demande de devis : ${product.name}`}
+          <button 
+            onClick={() => openQuoteModal(product.name)}
             className="btn-primary" 
-            style={{ width: '100%', justifyContent: 'center', padding: '1rem', fontSize: '1rem', borderRadius: '8px', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+            style={{ width: '100%', justifyContent: 'center', padding: '1rem', fontSize: '1rem', borderRadius: '8px', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem' }}
           >
              Demander un devis
-          </a>
+          </button>
 
           <div style={{ marginTop: '1.5rem', paddingTop: '1.5rem', borderTop: '1px solid #EAEAEA' }}>
             <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '0.8rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
