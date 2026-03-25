@@ -4,14 +4,6 @@ export function Services() {
   return (
     <div className="main-content" style={{ padding: '60px 20px', maxWidth: '1200px', margin: '0 auto' }}>
       
-      {/* Hero Section */}
-      <div style={{ textAlign: 'center', marginBottom: '80px' }}>
-        <h1 style={{ fontSize: '3rem', marginBottom: '16px' }}>Services Professionnels</h1>
-        <p style={{ fontSize: '1.2rem', color: '#666', maxWidth: '700px', margin: '0 auto' }}>
-          Au-delà de la simple location de matériel, nous vous accompagnons sur le terrain pour garantir la réussite totale de votre événement. Configurez votre prestation sur mesure.
-        </p>
-      </div>
-
       {/* Services Grid */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '40px' }}>
         
@@ -20,24 +12,10 @@ export function Services() {
             <Truck size={32} color="var(--accent)" />
           </div>
           <div>
-            <h3 style={{ fontSize: '1.4rem', marginBottom: '12px' }}>Livraison & Installation</h3>
-            <p style={{ color: '#666', lineHeight: '1.6', marginBottom: '16px' }}>
-              Ne vous souciez plus de la logistique. Notre équipe achemine le matériel directement sur le lieu de votre événement, procède au montage intégral et aux tests sonores.
+            <h3 style={{ fontSize: '1.4rem', marginBottom: '12px', textTransform: 'uppercase' }}>LIVRAISON</h3>
+            <p style={{ color: '#666', lineHeight: '1.6' }}>
+              Ne vous souciez de rien : le matériel choisi est livré, installé et désinstallé après votre événement.
             </p>
-            <span style={{ fontWeight: 600, color: 'var(--accent)' }}>Sur devis (selon distance et volume)</span>
-          </div>
-        </div>
-
-        <div style={{ display: 'flex', gap: '24px', padding: '32px', background: '#f9fafb', borderRadius: '16px', border: '1px solid #eee' }}>
-          <div style={{ background: '#fff', padding: '16px', borderRadius: '12px', height: 'fit-content', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}>
-            <Headphones size={32} color="var(--accent)" />
-          </div>
-          <div>
-            <h3 style={{ fontSize: '1.4rem', marginBottom: '12px' }}>Technicien sur place</h3>
-            <p style={{ color: '#666', lineHeight: '1.6', marginBottom: '16px' }}>
-              Un ingénieur du son ou un Light Jockey professionnel pour gérer la régie pendant toute la durée de votre événement. L'assurance d'une prestation parfaitement maîtrisée.
-            </p>
-            <span style={{ fontWeight: 600, color: 'var(--accent)' }}>À partir de 350 € / prestation</span>
           </div>
         </div>
 
@@ -46,11 +24,22 @@ export function Services() {
             <ShieldCheck size={32} color="var(--accent)" />
           </div>
           <div>
-            <h3 style={{ fontSize: '1.4rem', marginBottom: '12px' }}>Assurance Annulation</h3>
-            <p style={{ color: '#666', lineHeight: '1.6', marginBottom: '16px' }}>
-              Protégez votre budget en cas d'imprévu. Annulation gratuite jusqu'à 24h avant l'événement avec remboursement intégral de l'acompte.
+            <h3 style={{ fontSize: '1.4rem', marginBottom: '12px', textTransform: 'uppercase' }}>ASSURANCE TECHNIQUE</h3>
+            <p style={{ color: '#666', lineHeight: '1.6' }}>
+              Vous bénéficiez de la présence d'un technicien tout au long de votre événement.
             </p>
-            <span style={{ fontWeight: 600, color: 'var(--accent)' }}>+ 5% du montant total</span>
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', gap: '24px', padding: '32px', background: '#f9fafb', borderRadius: '16px', border: '1px solid #eee' }}>
+          <div style={{ background: '#fff', padding: '16px', borderRadius: '12px', height: 'fit-content', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }}>
+            <Headphones size={32} color="var(--accent)" />
+          </div>
+          <div>
+            <h3 style={{ fontSize: '1.4rem', marginBottom: '12px', textTransform: 'uppercase' }}>ANIMATION ÉVÉNEMENTIELLE <br/><span style={{ fontSize: '0.9rem', opacity: 0.8 }}>( partie deejaying )</span></h3>
+            <p style={{ color: '#666', lineHeight: '1.6' }}>
+              Sublimez vos événements de toute nature avec l'assistance d'un animateur expérimenté et à l'écoute de vos exigences
+            </p>
           </div>
         </div>
 
@@ -59,11 +48,10 @@ export function Services() {
             <Wrench size={32} color="var(--accent)" />
           </div>
           <div>
-            <h3 style={{ fontSize: '1.4rem', marginBottom: '12px' }}>Assistance H24 (Astreinte)</h3>
-            <p style={{ color: '#666', lineHeight: '1.6', marginBottom: '16px' }}>
-              Même à 3h du matin, en cas de panne technique imprévue sur un équipement, nous intervenons pour un remplacement standard en moins de 2 heures.
+            <h3 style={{ fontSize: '1.4rem', marginBottom: '12px', textTransform: 'uppercase' }}>FORMATION DEEJAYING</h3>
+            <p style={{ color: '#666', lineHeight: '1.6' }}>
+              Apprenez les bases du mix en toute sérénité et simplicité
             </p>
-            <span style={{ fontWeight: 600, color: 'var(--accent)' }}>Inclus gratuitement sur les Packs Pro</span>
           </div>
         </div>
 

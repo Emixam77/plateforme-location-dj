@@ -56,9 +56,7 @@ export function Catalog() {
   return (
     <div className="main-content" style={{ paddingTop: '2rem' }}>
       
-      <div style={{ marginBottom: '3rem', textAlign: 'center' }}>
-        <h1 style={{ fontSize: '2.1rem' }}>Notre Catalogue</h1>
-      </div>
+
 
       <div style={{ display: 'flex', gap: '3rem', alignItems: 'flex-start' }}>
         
@@ -77,16 +75,7 @@ export function Catalog() {
                 onChange={() => handleCategoryToggle('son')}
                 style={{ marginRight: '8px' }}
                /> 
-              Sonorisation
-            </label>
-            <label style={{ display: 'block', marginBottom: '0.5rem', cursor: 'pointer' }}>
-              <input 
-                type="checkbox" 
-                checked={selectedCategories.includes('dj-set')}
-                onChange={() => handleCategoryToggle('dj-set')}
-                style={{ marginRight: '8px' }}
-               /> 
-              Régie DJ
+              SONORISATION
             </label>
             <label style={{ display: 'block', marginBottom: '0.5rem', cursor: 'pointer' }}>
               <input 
@@ -95,7 +84,7 @@ export function Catalog() {
                 onChange={() => handleCategoryToggle('lumiere')}
                 style={{ marginRight: '8px' }}
                /> 
-              Lumières & FX
+              LUMIÈRE ET AMBIANCE
             </label>
           </div>
         </aside>

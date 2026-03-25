@@ -21,12 +21,12 @@ export function Home() {
 
       {/* Content Layer */}
       <section className="hero" style={{ position: 'relative', zIndex: 1 }}>
-        <h1>Équipement Pro. <br/>Sans compromis.</h1>
-        <p>Location de matériel audiovisuel haute fidélité pour vos événements professionnels et privés.</p>
+        <h1>ANGELO ENTERTAINMENT</h1>
+        <p>SOLUTION AUDIO - VISUELLE SUR MESURE</p>
         <span className="signature-text">Testé et approuvé par nos techniciens</span>
         
         <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-          <Link to="/catalog" className="btn-primary">Voir le Catalogue <ShoppingCart size={18}/></Link>
+          <Link to="/catalog" className="btn-primary">Voir le matériel <ShoppingCart size={18}/></Link>
         </div>
       </section>
     </div>

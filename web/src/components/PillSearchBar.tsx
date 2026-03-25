@@ -25,9 +25,8 @@ export function PillSearchBar() {
           
           {hoveredSection === 'category' && (
             <div className="pill-dropdown" style={{ left: 0 }}>
-              <div className="dropdown-item">Platines & DJ</div>
-              <div className="dropdown-item">Sonorisation</div>
-              <div className="dropdown-item">Lumière & FX</div>
+              <div className="dropdown-item">SONORISATION</div>
+              <div className="dropdown-item">LUMIÈRE ET AMBIANCE</div>
             </div>
           )}
         </div>
