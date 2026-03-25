@@ -23,7 +23,6 @@ export function Home() {
       <section className="hero" style={{ position: 'relative', zIndex: 1 }}>
         <h1>ANGELO ENTERTAINMENT</h1>
         <p>SOLUTION AUDIO - VISUELLE SUR MESURE</p>
-        <span className="signature-text">Testé et approuvé par nos techniciens</span>
         
         <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem', justifyContent: 'center' }}>
           <Link to="/catalog" className="btn-primary">Voir le matériel <ShoppingCart size={18}/></Link>
