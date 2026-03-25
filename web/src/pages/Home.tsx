@@ -21,7 +21,17 @@ export function Home() {
 
       {/* Content Layer */}
       <section className="hero" style={{ position: 'relative', zIndex: 1 }}>
-        <h1>ANGELO ENTERTAINMENT</h1>
+        <img 
+          src="/angelo-logo-hero.png" 
+          alt="Angelo Entertainment" 
+          style={{ 
+            maxWidth: '500px', 
+            width: '90%', 
+            height: 'auto',
+            marginBottom: '1rem',
+            filter: 'drop-shadow(0 0 15px rgba(255,255,255,0.3))'
+          }} 
+        />
         <p>SOLUTION AUDIO - VISUELLE SUR MESURE</p>
         
         <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem', justifyContent: 'center' }}>
