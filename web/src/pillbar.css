@@ -113,3 +113,40 @@
 }
 
 /* Fin Pill Bar */
+
+@media (max-width: 768px) {
+  .pill-bar {
+    flex-direction: column;
+    height: auto;
+    border-radius: 24px;
+    padding: 1rem 0;
+    gap: 0.5rem;
+  }
+
+  .pill-section {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    text-align: center;
+  }
+
+  .pill-divider {
+    width: 80%;
+    height: 1px;
+    margin: 0 auto;
+  }
+
+  .pill-search-btn {
+    width: 90%;
+    margin: 1rem auto 0.5rem;
+    border-radius: 12px;
+  }
+
+  .pill-dropdown {
+    width: 90%;
+    left: 5% !important;
+    right: 5% !important;
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%) !important;
+  }
+}
