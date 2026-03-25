@@ -8,8 +8,8 @@
   --admin-text: #0f172a;
   --admin-text-muted: #64748b;
   
-  --admin-accent: #6366f1; /* Indigo */
-  --admin-accent-soft: rgba(99, 102, 241, 0.1);
+  --admin-accent: #172D9D; /* Deep Blue from palette */
+  --admin-accent-soft: rgba(23, 45, 157, 0.1);
   --admin-success: #10b981;
   --admin-danger: #ef4444;
   --admin-warning: #f59e0b;

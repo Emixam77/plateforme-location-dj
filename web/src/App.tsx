@@ -19,10 +19,10 @@ function Layout() {
 
   return (
     <div className="app-container">
-      <header className="header" style={{ borderBottom: '3px solid var(--accent)' }}>
+      <header className="header">
         <Link to="/" className="logo" onClick={() => setIsMenuOpen(false)} style={{ display: 'flex', flexDirection: 'column', lineHeight: '1.1', textDecoration: 'none' }}>
-          <div style={{ fontWeight: 'bold' }}>AUDIO<span style={{ color: 'var(--accent)' }}>RENT</span></div>
-          <span style={{ fontSize: '0.55rem', fontWeight: 'bold', letterSpacing: '1.5px', opacity: 0.9, color: 'var(--text-main)', marginTop: '2px' }}>ANGELO ENTERTAINMENT</span>
+          <div style={{ fontWeight: 'bold', color: 'var(--accent-deep)' }}>AUDIO<span style={{ color: 'var(--accent)' }}>RENT</span></div>
+          <span style={{ fontSize: '0.55rem', fontWeight: 'bold', letterSpacing: '1.5px', opacity: 0.9, color: 'var(--accent)', marginTop: '2px' }}>ANGELO ENTERTAINMENT</span>
         </Link>
         
         {/* Desktop Navigation */}

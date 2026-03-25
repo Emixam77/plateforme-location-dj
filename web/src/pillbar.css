@@ -55,7 +55,7 @@
 
 .pill-search-btn {
   background: var(--accent);
-  color: #000;
+  color: #fff;
   height: 48px;
   width: 48px;
   border-radius: 50%;
@@ -97,7 +97,7 @@
 
 .dropdown-item:hover {
   background: var(--accent);
-  color: #000;
+  color: #fff;
   transform: translateX(4px);
 }
 
