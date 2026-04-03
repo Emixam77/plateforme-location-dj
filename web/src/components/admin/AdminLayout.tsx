@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
-import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { LayoutDashboard, Package, Settings, LogOut, Activity, Menu, X } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
 import '../../admin.css'; // Import specific admin styles
 
 export function AdminLayout() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, signOut } = useAuth();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   
   // Add dark mode body class on mount
@@ -23,6 +26,12 @@ export function AdminLayout() {
   };
 
   const closeSidebar = () => setIsSidebarOpen(false);
+
+  const handleSignOut = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    await signOut();
+    navigate('/');
+  };
 
   return (
     <div className="admin-container">
@@ -75,9 +84,25 @@ export function AdminLayout() {
         </nav>
         
         <div style={{ marginTop: 'auto' }}>
-          <NavLink to="/" className="admin-nav-item" style={{ color: 'var(--admin-danger)' }} onClick={closeSidebar}>
+          <button 
+            onClick={handleSignOut} 
+            className="admin-nav-item" 
+            style={{ 
+              color: 'var(--admin-danger)', 
+              width: '100%', 
+              background: 'none', 
+              border: 'none', 
+              cursor: 'pointer',
+              textAlign: 'left'
+            }}
+          >
             <LogOut size={20} />
-            Quitter l'Admin
+            Déconnexion
+          </button>
+          
+          <NavLink to="/" className="admin-nav-item" onClick={closeSidebar}>
+            <LogOut size={20} style={{ transform: 'rotate(180deg)' }} />
+            Retour au site
           </NavLink>
         </div>
       </aside>
@@ -93,8 +118,12 @@ export function AdminLayout() {
           </div>
           
           <div className="admin-user">
-            <span style={{ color: 'var(--admin-text-muted)', fontSize: '0.9rem' }} className="desktop-only">Admin Principal</span>
-            <div className="admin-avatar">A</div>
+            <span style={{ color: 'var(--admin-text-muted)', fontSize: '0.9rem' }} className="desktop-only">
+              {user?.email || 'Administrateur'}
+            </span>
+            <div className="admin-avatar">
+              {user?.email ? user.email[0].toUpperCase() : 'A'}
+            </div>
           </div>
         </header>
         

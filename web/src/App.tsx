@@ -10,6 +10,9 @@ import { AdminLayout } from './components/admin/AdminLayout';
 import { AdminDashboard } from './pages/admin/AdminDashboard';
 import { AdminProducts } from './pages/admin/AdminProducts';
 import { AdminSettings } from './pages/admin/AdminSettings';
+import { AdminLogin } from './pages/admin/AdminLogin';
+import { ProtectedRoute } from './components/admin/ProtectedRoute';
+import { AuthProvider } from './context/AuthContext';
 import { QuoteProvider } from './context/QuoteContext';
 import { QuoteModal } from './components/QuoteModal';
 import './index.css';
@@ -62,28 +65,38 @@ function Layout() {
 
 function App() {
   return (
-    <QuoteProvider>
-      <Router>
-        <Routes>
-            {/* Admin Routes */}
-            <Route path="/admin" element={<AdminLayout />}>
-              <Route index element={<AdminDashboard />} />
-              <Route path="products" element={<AdminProducts />} />
-              <Route path="settings" element={<AdminSettings />} />
-            </Route>
+    <AuthProvider>
+      <QuoteProvider>
+        <Router>
+          <Routes>
+              {/* Admin Routes */}
+              <Route path="/admin/login" element={<AdminLogin />} />
+              <Route 
+                path="/admin" 
+                element={
+                  <ProtectedRoute>
+                    <AdminLayout />
+                  </ProtectedRoute>
+                }
+              >
+                <Route index element={<AdminDashboard />} />
+                <Route path="products" element={<AdminProducts />} />
+                <Route path="settings" element={<AdminSettings />} />
+              </Route>
 
-            {/* Public Routes */}
-            <Route element={<Layout />}>
-              <Route path="/" element={<Home />} />
-              <Route path="/catalog" element={<Catalog />} />
-              <Route path="/product/:id" element={<ProductDetail />} />
-              <Route path="/packs" element={<Packs />} />
-              <Route path="/services" element={<Services />} />
-            </Route>
-        </Routes>
-        <QuoteModal />
-      </Router>
-    </QuoteProvider>
+              {/* Public Routes */}
+              <Route element={<Layout />}>
+                <Route path="/" element={<Home />} />
+                <Route path="/catalog" element={<Catalog />} />
+                <Route path="/product/:id" element={<ProductDetail />} />
+                <Route path="/packs" element={<Packs />} />
+                <Route path="/services" element={<Services />} />
+              </Route>
+          </Routes>
+          <QuoteModal />
+        </Router>
+      </QuoteProvider>
+    </AuthProvider>
   );
 }
 
